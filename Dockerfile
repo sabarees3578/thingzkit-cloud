@@ -15,6 +15,15 @@ RUN arduino-cli core install esp32:esp32 --additional-urls https://raw.githubuse
 WORKDIR /app
 COPY package*.json ./
 
+# Define environment variables securely required by the React frontend build
+ENV VITE_FIREBASE_API_KEY=AIzaSyBYDbb3I2uMIXPp_h9jqyzXMtAjSnJi7mM
+ENV VITE_FIREBASE_AUTH_DOMAIN=enthu-tech.firebaseapp.com
+ENV VITE_FIREBASE_PROJECT_ID=enthu-tech
+ENV VITE_FIREBASE_STORAGE_BUCKET=enthu-tech.firebasestorage.app
+ENV VITE_FIREBASE_MESSAGING_SENDER_ID=947603376082
+ENV VITE_FIREBASE_APP_ID=1:947603376082:web:b84ea61b98e54898e62a0b
+ENV VITE_FIREBASE_MEASUREMENT_ID=G-QH9Q2PN27B
+
 # Install npm dependencies
 RUN npm install
 
