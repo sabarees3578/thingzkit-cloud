@@ -15,17 +15,15 @@ function ProtectedRoute({ children }) {
 
 function App() {
     return (
-        <AuthProvider>
-            <Routes>
-                <Route path="/" element={<WelcomePage />} />
-                <Route path="/dashboard/*" element={
-                    <ProtectedRoute>
-                        <DashboardLayout />
-                    </ProtectedRoute>
-                } />
-                <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-        </AuthProvider>
+        <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/dashboard/*" element={
+                <ProtectedRoute>
+                    <DashboardLayout />
+                </ProtectedRoute>
+            } />
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
     )
 }
 
