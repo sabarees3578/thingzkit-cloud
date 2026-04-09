@@ -1,0 +1,31 @@
+[31mx[39m Build failed in 590ms
+[31merror during build:
+[31m[vite:esbuild] Transform failed with 1 error:
+E:/enhu project/enthutech-main/src/components/WebEditor.jsx:249:37: ERROR: Syntax error "`"[31m
+file: [36mE:/enhu project/enthutech-main/src/components/WebEditor.jsx:249:37[31m
+[33m
+[33mSyntax error "`"[33m
+247|  
+248|                  {status && (
+249|                      <div className={\`\${styles.status} \${status.includes('✓') ? styles.success : status.includes('✕') || status.includes('failed') || status.includes('Error') ? styles.error : ''}\`}>
+   |                                       ^
+250|                          {status}
+251|                      </div>
+[31m
+    at failureErrorWithLog (E:\enhu project\enthutech-main\node_modules\esbuild\lib\main.js:1472:15)
+    at E:\enhu project\enthutech-main\node_modules\esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (E:\enhu project\enthutech-main\node_modules\esbuild\lib\main.js:622:9)
+    at handleIncomingPacket (E:\enhu project\enthutech-main\node_modules\esbuild\lib\main.js:677:12)
+    at Socket.readFromStdout (E:\enhu project\enthutech-main\node_modules\esbuild\lib\main.js:600:7)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)[39m
+\nSTDOUT:\n
+> enthu-tech-iot@1.0.0 build
+> vite build
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 45 modules transformed.

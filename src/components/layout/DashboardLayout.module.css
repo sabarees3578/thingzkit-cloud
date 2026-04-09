@@ -1,0 +1,33 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+.mainWrap {
+    flex: 1;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    transition: margin .3s;
+}
+
+.main {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 150;
+    backdrop-filter: blur(2px);
+}
+
+@media(max-width:900px) {
+    .mainWrap {
+        margin-left: 0;
+    }
+}

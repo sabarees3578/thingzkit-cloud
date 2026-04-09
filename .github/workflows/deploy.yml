@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main, master]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Dashboard
+        run: npm run build
+        env:
+          VITE_SERVER_URL: 'https://enthutech-iot-production.up.railway.app' # Optionally change this if the backend is hosted
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

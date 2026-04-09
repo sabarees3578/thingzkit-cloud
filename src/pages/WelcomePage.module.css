@@ -1,0 +1,555 @@
+.welcomeBody {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-primary);
+}
+
+.bgAnimation {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(108, 99, 255, .08) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(0, 212, 255, .06) 0%, transparent 55%), var(--bg-primary);
+}
+
+.bgOrb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 8s ease-in-out infinite;
+}
+
+.orb1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(108, 99, 255, .12);
+    top: -200px;
+    left: -200px;
+}
+
+.orb2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 212, 255, .08);
+    bottom: -150px;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.orb3 {
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 229, 160, .06);
+    top: 40%;
+    right: -100px;
+    animation-delay: 6s;
+}
+
+.particleCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.gridOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: linear-gradient(rgba(108, 99, 255, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(108, 99, 255, .03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100vh;
+}
+
+.left {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 60px 60px 80px;
+    gap: 36px;
+    animation: fadeInUp .8s ease both;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logoIcon {
+    width: 46px;
+    height: 46px;
+    background: var(--gradient-primary);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(108, 99, 255, .4);
+}
+
+.brandName {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.brandName span {
+    color: var(--accent-purple);
+}
+
+.hero {}
+
+.heroTitle {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+}
+
+.heroSubtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 460px;
+    line-height: 1.8;
+}
+
+.pills {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--surface-a04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.pill:hover {
+    border-color: var(--accent-purple);
+    color: var(--text-primary);
+    background: rgba(108, 99, 255, .08);
+}
+
+.pillDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.pillDot::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    animation: pulse-ring 1.5s ease-out infinite;
+}
+
+.green {
+    background: var(--accent-green);
+}
+
+.green::after {
+    background: rgba(0, 229, 160, .3);
+}
+
+.blue {
+    background: var(--accent-blue);
+}
+
+.blue::after {
+    background: rgba(0, 212, 255, .3);
+}
+
+.purple {
+    background: var(--accent-purple);
+}
+
+.purple::after {
+    background: rgba(108, 99, 255, .3);
+}
+
+.statsRow {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.statNum {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.statLabel {
+    font-size: .75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.statDiv {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+}
+
+.previewCards {
+    display: flex;
+    gap: 12px;
+}
+
+.previewCard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    position: relative;
+    flex: 1;
+    animation: float 6s ease-in-out infinite;
+    transition: var(--transition);
+}
+
+.previewCard:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.previewCard:nth-child(3) {
+    animation-delay: 2s;
+}
+
+.previewCard:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-purple);
+}
+
+.cardTemp {
+    background: rgba(108, 99, 255, .08);
+}
+
+.cardHumid {
+    background: rgba(0, 212, 255, .07);
+}
+
+.cardPower {
+    background: rgba(0, 229, 160, .06);
+}
+
+.previewIcon {
+    font-size: 1.5rem;
+}
+
+.previewInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.previewLabel {
+    font-size: .68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+.previewValue {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: .6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 2px 7px;
+    border-radius: 100px;
+}
+
+.online {
+    background: rgba(0, 229, 160, .15);
+    color: var(--accent-green);
+    animation: blink 2s ease infinite;
+}
+
+.right {
+    flex: .85;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    animation: fadeInUp .8s ease .2s both;
+}
+
+.authCard {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(20, 24, 40, .85);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--surface-a08);
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 0 1px rgba(108, 99, 255, .1);
+}
+
+.authTabs {
+    display: flex;
+    background: var(--surface-a04);
+    border-radius: var(--radius-xs);
+    padding: 4px;
+    margin-bottom: 28px;
+}
+
+.authTab {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.authTab.active {
+    background: var(--accent-purple);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(108, 99, 255, .4);
+}
+
+.authForm {}
+
+.authTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.authSubtitle {
+    font-size: .85rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.formGroup {
+    margin-bottom: 16px;
+}
+
+.formLabel {
+    display: block;
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.inputWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 12px;
+    font-size: .9rem;
+}
+
+.formInput {
+    width: 100%;
+    padding: 11px 14px 11px 40px;
+    background: var(--surface-a04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    color: var(--text-primary);
+    font-size: .9rem;
+    transition: var(--transition);
+}
+
+.formInput:focus {
+    border-color: var(--accent-purple);
+    background: rgba(108, 99, 255, .05);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, .12);
+}
+
+.formInput::placeholder {
+    color: var(--text-muted);
+}
+
+.noIcon {
+    padding-left: 14px;
+}
+
+.togglePass {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: .9rem;
+}
+
+.formRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: .82rem;
+    color: var(--text-secondary);
+}
+
+.formRow2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.checkLabel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.forgotLink {
+    color: var(--accent-purple);
+    transition: var(--transition);
+}
+
+.forgotLink:hover {
+    color: var(--accent-blue);
+}
+
+.btnPrimary {
+    width: 100%;
+    padding: 13px;
+    background: var(--gradient-primary);
+    color: #fff;
+    font-size: .95rem;
+    font-weight: 600;
+    border-radius: var(--radius-xs);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(108, 99, 255, .4);
+}
+
+.btnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(108, 99, 255, .5);
+}
+
+.btnLoader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--surface-a30);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin-slow .8s linear infinite;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 18px 0;
+    font-size: .78rem;
+    color: var(--text-muted);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.socialBtns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.socialBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: var(--surface-a03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    color: var(--text-secondary);
+    font-size: .85rem;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.socialBtn:hover {
+    border-color: var(--accent-purple);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+@media(max-width:1024px) {
+    .left {
+        padding: 50px 40px;
+    }
+
+    .heroTitle {
+        font-size: 2.4rem;
+    }
+
+    .previewCards {
+        flex-direction: column;
+    }
+}
+
+@media(max-width:768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left {
+        padding: 40px 24px 20px;
+    }
+
+    .right {
+        padding: 20px 24px 40px;
+    }
+
+    .heroTitle {
+        font-size: 1.9rem;
+    }
+}

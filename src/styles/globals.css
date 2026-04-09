@@ -1,0 +1,268 @@
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+    /* Backgrounds */
+    --bg-primary: #080B18;
+    --bg-secondary: #0D1121;
+    --bg-card: #111527;
+    --bg-sidebar: #0A0D1A;
+
+    /* Accents */
+    --accent-purple: #6C63FF;
+    --accent-blue: #00D4FF;
+    --accent-green: #00E5A0;
+    --accent-orange: #FF6B35;
+    --accent-red: #FF4757;
+    --accent-yellow: #FFD32A;
+
+    /* Text */
+    --text-primary: #EAEAF4;
+    --text-secondary: #8B8FA8;
+    --text-muted: #4A4E6A;
+
+    /* Borders */
+    --border: var(--surface-a07);
+    --border-accent: rgba(108, 99, 255, 0.3);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%);
+    --gradient-green: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 24px rgba(108, 99, 255, 0.15);
+
+    /* Alpha Surfaces for overlays/inputs */
+    --surface-a02: rgba(255, 255, 255, 0.02);
+    --surface-a03: rgba(255, 255, 255, 0.03);
+    --surface-a04: rgba(255, 255, 255, 0.04);
+    --surface-a05: rgba(255, 255, 255, 0.05);
+    --surface-a06: rgba(255, 255, 255, 0.06);
+    --surface-a07: rgba(255, 255, 255, 0.07);
+    --surface-a08: rgba(255, 255, 255, 0.08);
+    --surface-a09: rgba(255, 255, 255, 0.09);
+    --surface-a10: rgba(255, 255, 255, 0.1);
+    --surface-a12: rgba(255, 255, 255, 0.12);
+    --surface-a15: rgba(255, 255, 255, 0.15);
+    --surface-a20: rgba(255, 255, 255, 0.2);
+
+    /* Misc */
+    --font: 'Poppins', system-ui, sans-serif;
+    --radius: 14px;
+    --radius-xs: 8px;
+    --transition: all .2s ease;
+}
+
+/* ── Light Theme (Blue, White, Orange) ── */
+[data-theme="light"] {
+    /* Backgrounds */
+    --bg-primary: #F0F4F8;
+    /* Light blue-tinted white */
+    --bg-secondary: #E2E8F0;
+    --bg-card: #FFFFFF;
+    /* Pure white */
+    --bg-sidebar: #FFFFFF;
+
+    /* Accents */
+    --accent-purple: #5A52D5;
+    /* Richer brand purple for light bg */
+    --accent-blue: #008CB3;
+    /* Deeper cyan/blue */
+    --accent-green: #00A675;
+    /* Darker mint green */
+    --accent-orange: #E65A2C;
+    /* Rich orange */
+    --accent-red: #E63E4D;
+    --accent-yellow: #D09C00;
+    /* Gold/Amber for contrast */
+
+    /* Text */
+    --text-primary: #0F172A;
+    /* Dark blue-gray text */
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+
+    /* Borders */
+    --border: var(--surface-a10);
+    --border-accent: rgba(14, 165, 233, 0.3);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #5A52D5 0%, #008CB3 100%);
+    --gradient-green: linear-gradient(135deg, #00A675 0%, #008CB3 100%);
+
+    /* Shadows */
+    --shadow-card: 0 6px 24px rgba(15, 23, 42, 0.08);
+    --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.25);
+
+    /* Alpha Surfaces (Dark text/elements on light bg) */
+    --surface-a02: rgba(15, 23, 42, 0.02);
+    --surface-a03: rgba(15, 23, 42, 0.03);
+    --surface-a04: rgba(15, 23, 42, 0.04);
+    --surface-a05: rgba(15, 23, 42, 0.05);
+    --surface-a06: rgba(15, 23, 42, 0.06);
+    --surface-a07: rgba(15, 23, 42, 0.07);
+    --surface-a08: rgba(15, 23, 42, 0.08);
+    --surface-a09: rgba(15, 23, 42, 0.09);
+    --surface-a10: rgba(15, 23, 42, 0.1);
+    --surface-a12: rgba(15, 23, 42, 0.12);
+    --surface-a15: rgba(15, 23, 42, 0.15);
+    --surface-a20: rgba(15, 23, 42, 0.2);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+}
+
+input,
+select,
+textarea {
+    background: none;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+    outline: none;
+}
+
+select option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(108, 99, 255, .3);
+}
+
+/* ── Utilities ── */
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Animations ── */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: .6;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .4;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
