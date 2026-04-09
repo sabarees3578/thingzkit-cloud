@@ -1,7 +1,7 @@
 /**
  * ╔══════════════════════════════════════════════════════════════╗
  *   EnthutechIoT Production Server  v3.0
- *   - MongoDB persistence (Atlas-ready)
+ *   - Firebase Firestore persistence
  *   - WebSocket uplink + downlink (real-time ESP32 ↔ Dashboard)
  *   - HTTP uplink  (POST /ingest)         — works from ESP32
  *   - HTTP downlink (GET /commands)       — ESP32 polls for commands
@@ -185,7 +185,7 @@ app.post('/api/v1/devices/:id/compile', async (req, res) => {
     })
 })
 
-const memCmdQueue = new Map() // Fallback queue when MongoDB is offline
+const memCmdQueue = new Map() // Fallback queue when Firebase is offline
 
 // ── DOWNLINK: Dashboard sends command to ESP32 ───────────────
 // Works for: WebSocket delivery (instant) + HTTP/HTTPS polling fallback

@@ -9,8 +9,6 @@ services:
     envVars:
       - key: PORT
         value: 4000
-      - key: MONGODB_URI
-        sync: false
       - key: VITE_FIREBASE_API_KEY
         sync: false
       - key: VITE_FIREBASE_AUTH_DOMAIN

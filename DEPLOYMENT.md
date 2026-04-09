@@ -19,7 +19,7 @@
 
 ---
 
-## Step 1 — Verify Firebase / MongoDB Configuration
+## Step 1 — Verify Firebase Configuration
 
 If you are using Firebase (as configured in `server.cjs`), ensure you have your Firebase keys handy. You'll need to provide these to Render securely.
 
@@ -67,7 +67,7 @@ Render will now build your Docker container. This process installs Node.js, Ardu
 ### HTTP (simple — sensor-only devices)
 - Uplink: `POST /api/v1/devices/:id/ingest` every N seconds
 - Downlink: `GET /api/v1/devices/:id/commands` every 3 seconds
-  - Server queues commands in MongoDB
+  - Server queues commands in Firebase Firestore
   - ESP32 picks them up on next poll, ACKs them
 
 ### HTTPS (encrypted)

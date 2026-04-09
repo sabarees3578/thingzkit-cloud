@@ -1,4 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { useAuth } from './AuthContext'
+import { db } from '../firebase'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 
 const AppContext = createContext(null)
 
@@ -65,6 +68,9 @@ function initCurrentId(projects) {
 
 // ── Provider ─────────────────────────────────────────────────
 export function AppProvider({ children }) {
+    const { currentUser } = useAuth()
+    const [hasLoadedCloud, setHasLoadedCloud] = useState(false)
+
     const [projects, setProjects] = useState(initProjects)
     const [currentProjectId, setCurrentProjectId] = useState(() => {
         const ps = initProjects()
@@ -109,13 +115,56 @@ export function AppProvider({ children }) {
         localStorage.setItem('et_theme', theme)
     }, [theme])
 
-    // Persist
-    useEffect(() => localStorage.setItem('et_projects', JSON.stringify(projects)), [projects])
-    useEffect(() => localStorage.setItem('et_currentProject', currentProjectId), [currentProjectId])
-    useEffect(() => localStorage.setItem('et_devices', JSON.stringify(devices)), [devices])
-    useEffect(() => localStorage.setItem('et_widgets', JSON.stringify(widgets)), [widgets])
-    useEffect(() => localStorage.setItem('et_automations', JSON.stringify(automations)), [automations])
-    useEffect(() => localStorage.setItem('et_alerts', JSON.stringify(alerts)), [alerts])
+    // ── Local Storage Persist (Fallback for Guests) ───────────
+    useEffect(() => { if(!hasLoadedCloud) return; localStorage.setItem('et_projects', JSON.stringify(projects)) }, [projects, hasLoadedCloud])
+    useEffect(() => { if(!hasLoadedCloud) return; localStorage.setItem('et_currentProject', currentProjectId) }, [currentProjectId, hasLoadedCloud])
+    useEffect(() => { if(!hasLoadedCloud) return; localStorage.setItem('et_devices', JSON.stringify(devices)) }, [devices, hasLoadedCloud])
+    useEffect(() => { if(!hasLoadedCloud) return; localStorage.setItem('et_widgets', JSON.stringify(widgets)) }, [widgets, hasLoadedCloud])
+    useEffect(() => { if(!hasLoadedCloud) return; localStorage.setItem('et_automations', JSON.stringify(automations)) }, [automations, hasLoadedCloud])
+    useEffect(() => { if(!hasLoadedCloud) return; localStorage.setItem('et_alerts', JSON.stringify(alerts)) }, [alerts, hasLoadedCloud])
+
+    // ── Cloud Sync ───────────────────────────────────────────
+    // Load from Cloud once on login
+    useEffect(() => {
+        if (currentUser) {
+            setHasLoadedCloud(false)
+            const loadFromCloud = async () => {
+                try {
+                    const snap = await getDoc(doc(db, 'users', currentUser.uid))
+                    if (snap.exists()) {
+                        const data = snap.data()
+                        if(data.projects && data.projects.length) setProjects(data.projects)
+                        if(data.currentProjectId) setCurrentProjectId(data.currentProjectId)
+                        if(data.devices) setDevices(data.devices)
+                        if(data.widgets) setWidgets(data.widgets)
+                        if(data.automations) setAutomations(data.automations)
+                        if(data.alerts) setAlerts(data.alerts)
+                    }
+                } catch (e) {
+                    console.error("[Cloud] Error loading data", e)
+                } finally {
+                    setHasLoadedCloud(true)
+                }
+            }
+            loadFromCloud()
+        } else {
+            setHasLoadedCloud(true)
+        }
+    }, [currentUser])
+
+    // Save to Cloud on any local layout change (debounced 1s)
+    useEffect(() => {
+        if (!hasLoadedCloud || !currentUser) return
+        
+        const timeout = setTimeout(() => {
+            const docRef = doc(db, 'users', currentUser.uid)
+            setDoc(docRef, {
+                projects, currentProjectId, devices, widgets, automations, alerts
+            }, { merge: true }).catch(err => console.error("[Cloud] Config save error", err))
+        }, 1000)
+
+        return () => clearTimeout(timeout)
+    }, [currentUser, hasLoadedCloud, projects, currentProjectId, devices, widgets, automations, alerts])
 
     const currentProject = projects.find(p => p.id === currentProjectId) || projects[0]
     const projectDevices = devices[currentProjectId] || []
