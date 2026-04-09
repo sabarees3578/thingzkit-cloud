@@ -21,11 +21,6 @@ RUN npm install
 # Copy application code
 COPY . .
 
-# Build the React frontend
-RUN npm run build
-
-# Expose port (Render sets PORT env automatically, typically 10000 but we expose 4000 just in case)
-EXPOSE 4000
-
-# Start the Node.js server
-CMD ["npm", "start"]
+# The frontend must be built at runtime on Render because VITE_* environment variables
+# are only injected by Render at runtime, not during the Docker image build.
+CMD sh -c "npm run build && npm start"
